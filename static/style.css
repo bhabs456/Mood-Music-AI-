@@ -1,0 +1,894 @@
+/* =============================================
+       MOOD MUSIC AI — Embedded CSS
+       ============================================= */
+
+/* ---------- CSS VARIABLES (LIGHT MODE) ---------- */
+:root {
+  --bg-primary: #f4f6f9;
+  --bg-secondary: #ffffff;
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --accent-color: #7c3aed;
+  --accent-hover: #6d28d9;
+  --user-bubble: #7c3aed;
+  --bot-bubble: #e5e7eb;
+  --border-color: #d1d5db;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --orb-opacity: 0.18;
+  --input-shadow: rgba(124, 58, 237, 0.15);
+  --chip-bg: rgba(124, 58, 237, 0.07);
+  --chip-border: rgba(124, 58, 237, 0.3);
+  --chip-hover-bg: rgba(124, 58, 237, 0.15);
+  --scrollbar-thumb: #c4b5fd;
+  --np-bg: rgba(124, 58, 237, 0.1);
+  --np-dot: #7c3aed;
+  --logo-bg: rgba(124, 58, 237, 0.12);
+  --header-border: rgba(124, 58, 237, 0.15);
+}
+
+/* ---------- DARK MODE VARIABLES ---------- */
+body.dark-mode {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --accent-color: #a855f7;
+  --accent-hover: #9333ea;
+  --user-bubble: #a855f7;
+  --bot-bubble: #334155;
+  --border-color: #475569;
+  --shadow-color: rgba(0, 0, 0, 0.4);
+  --orb-opacity: 0.08;
+  --input-shadow: rgba(168, 85, 247, 0.2);
+  --chip-bg: rgba(168, 85, 247, 0.1);
+  --chip-border: rgba(168, 85, 247, 0.35);
+  --chip-hover-bg: rgba(168, 85, 247, 0.2);
+  --scrollbar-thumb: #7c3aed;
+  --np-bg: rgba(168, 85, 247, 0.15);
+  --np-dot: #a855f7;
+  --logo-bg: rgba(168, 85, 247, 0.15);
+  --header-border: rgba(168, 85, 247, 0.2);
+}
+
+/* ---------- RESET & BASE ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.35s ease, color 0.35s ease;
+  overflow: hidden;
+}
+
+/* ---------- APP WRAPPER ---------- */
+.app-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* ---------- AMBIENT ORBS ---------- */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: var(--orb-opacity);
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+.orb-1 {
+  width: 500px;
+  height: 500px;
+  background: var(--accent-color);
+  top: -120px;
+  left: -140px;
+}
+.orb-2 {
+  width: 400px;
+  height: 400px;
+  background: #ec4899;
+  bottom: -100px;
+  right: -100px;
+}
+.orb-3 {
+  width: 300px;
+  height: 300px;
+  background: #06b6d4;
+  bottom: 30%;
+  left: 55%;
+}
+
+/* ---------- MAIN APP CONTAINER ---------- */
+.app-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 900px;
+  height: 85vh;
+  background-color: var(--bg-secondary);
+  border-radius: 20px;
+  box-shadow: 0 24px 80px var(--shadow-color), 0 0 0 1px var(--border-color);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: background-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* ---------- HEADER ---------- */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--header-border);
+  background-color: var(--bg-secondary);
+  flex-shrink: 0;
+  transition: background-color 0.35s ease, border-color 0.35s ease;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.logo-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: var(--logo-bg);
+  color: var(--accent-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.35s ease, color 0.35s ease;
+  border: 1.5px solid var(--chip-border);
+}
+
+.app-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+  line-height: 1.2;
+  transition: color 0.35s ease;
+}
+
+.title-accent {
+  color: var(--accent-color);
+  transition: color 0.35s ease;
+}
+
+.app-subtitle {
+  font-size: 0.72rem;
+  font-weight: 300;
+  color: var(--text-secondary);
+  letter-spacing: 0.2px;
+  margin-top: 1px;
+  transition: color 0.35s ease;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Now Playing pill */
+.now-playing-pill {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  background: var(--np-bg);
+  border: 1px solid var(--chip-border);
+  transition: all 0.35s ease;
+}
+
+.np-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--np-dot);
+  animation: pulse 1.8s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0.6;
+  }
+}
+
+.np-text {
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: var(--accent-color);
+  white-space: nowrap;
+  transition: color 0.35s ease;
+}
+
+/* ---------- CIRCLE THEME TOGGLE BUTTON ---------- */
+.theme-btn {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  background: transparent;
+  flex-shrink: 0;
+}
+
+/* Rotating ring */
+.theme-btn::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: conic-gradient(
+    var(--accent-color),
+    #ec4899,
+    #06b6d4,
+    var(--accent-color)
+  );
+  animation: ringRotate 3s linear infinite;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+.theme-btn:hover::before {
+  opacity: 1;
+}
+
+@keyframes ringRotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Inner circle face */
+.theme-btn-inner {
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--bg-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.35s ease,
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow: hidden;
+  z-index: 1;
+}
+
+.theme-btn:hover .theme-btn-inner {
+  transform: scale(1.08);
+}
+.theme-btn:active .theme-btn-inner {
+  transform: scale(0.93);
+}
+
+/* Sun icon */
+.btn-sun,
+.btn-moon {
+  position: absolute;
+  font-size: 20px;
+  line-height: 1;
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.35s ease;
+  user-select: none;
+}
+
+/* Light mode: show sun, hide moon */
+.btn-sun {
+  transform: translateY(0) rotate(0deg);
+  opacity: 1;
+}
+.btn-moon {
+  transform: translateY(30px) rotate(-45deg);
+  opacity: 0;
+}
+
+/* Dark mode: hide sun, show moon */
+body.dark-mode .btn-sun {
+  transform: translateY(-30px) rotate(45deg);
+  opacity: 0;
+}
+body.dark-mode .btn-moon {
+  transform: translateY(0) rotate(0deg);
+  opacity: 1;
+}
+
+/* Ripple on click */
+.theme-btn .ripple {
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--accent-color);
+  opacity: 0;
+  transform: scale(0);
+  z-index: 0;
+  pointer-events: none;
+}
+.theme-btn.clicked .ripple {
+  animation: rippleOut 0.5s ease-out forwards;
+}
+@keyframes rippleOut {
+  0% {
+    transform: scale(0);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+/* Stars that appear in dark mode */
+.btn-stars {
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
+.btn-star {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  opacity: 0;
+  transition: opacity 0.4s ease 0.2s;
+}
+body.dark-mode .btn-star {
+  opacity: 1;
+}
+.btn-star:nth-child(1) {
+  top: 22%;
+  left: 18%;
+}
+.btn-star:nth-child(2) {
+  top: 35%;
+  left: 65%;
+  width: 2px;
+  height: 2px;
+}
+.btn-star:nth-child(3) {
+  top: 65%;
+  left: 28%;
+  width: 2px;
+  height: 2px;
+}
+.btn-star:nth-child(4) {
+  top: 58%;
+  left: 72%;
+}
+.btn-star:nth-child(5) {
+  top: 20%;
+  left: 55%;
+  width: 2px;
+  height: 2px;
+}
+
+/* ---------- CHAT AREA ---------- */
+.chat-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px 24px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  scroll-behavior: smooth;
+}
+
+.chat-area::-webkit-scrollbar {
+  width: 5px;
+}
+.chat-area::-webkit-scrollbar-track {
+  background: transparent;
+}
+.chat-area::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 10px;
+}
+
+/* ---------- MESSAGE BUBBLES ---------- */
+.message-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  animation: msgFadeIn 0.28s ease forwards;
+  opacity: 0;
+}
+
+.message-row.user-row {
+  justify-content: flex-end;
+}
+
+@keyframes msgFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message-row.bot {
+  flex-direction: row;
+}
+
+
+.avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  border: 2px solid var(--border-color);
+  transition: border-color 0.35s ease;
+}
+.avatar.bot-avatar {
+  background: var(--logo-bg);
+}
+.avatar.user-avatar {
+  background: var(--user-bubble);
+}
+
+.bubble {
+  display: inline-block;
+  max-width: 100%;
+  padding: 12px 16px;
+  border-radius: 18px;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  overflow-wrap: break-word;
+  word-break: normal;
+  white-space: normal;
+}
+
+.user-bubble {
+  background: var(--user-bubble);
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+
+.bot-bubble {
+  background: var(--bot-bubble);
+  color: var(--text-primary);
+  border-bottom-left-radius: 4px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  border-radius: 20px 20px 20px 6px;
+}
+
+.user-group {
+  align-items: flex-end;
+  text-align: left;
+}
+
+/* Typing indicator */
+.typing-bubble {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 14px 18px;
+}
+.typing-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--text-secondary);
+  animation: typingBounce 1.2s ease-in-out infinite;
+}
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typingBounce {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-6px);
+  }
+}
+
+/* Song cards */
+.song-list {
+  list-style: none;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.song-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  padding: 8px 12px;
+  transition: background 0.2s ease;
+}
+.message-row.bot .song-item {
+  background: rgba(0, 0, 0, 0.06);
+}
+body.dark-mode .message-row.bot .song-item {
+  background: rgba(255, 255, 255, 0.05);
+}
+.song-num {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--accent-color);
+  min-width: 18px;
+  transition: color 0.35s ease;
+}
+.song-info {
+  flex: 1;
+}
+.song-title {
+  font-weight: 600;
+  font-size: 0.82rem;
+}
+.song-artist {
+  font-size: 0.72rem;
+  opacity: 0.75;
+  margin-top: 1px;
+}
+.song-note {
+  font-size: 0.7rem;
+  opacity: 0.7;
+  font-style: italic;
+  margin-top: 2px;
+}
+
+/* Timestamp */
+.timestamp {
+  font-size: 0.62rem;
+  color: var(--text-secondary);
+  margin-top: 4px;
+  padding: 0 4px;
+  transition: color 0.35s ease;
+}
+.message-row.user .timestamp {
+  text-align: right;
+}
+.msg-group {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  max-width: 70%;
+}
+
+.song-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+}
+
+.song-link:hover {
+  opacity: 0.85;
+  transform: translateX(3px);
+  transition: 0.2s ease;
+}
+
+/* ---------- FOOTER ---------- */
+.footer {
+  padding: 14px 20px 18px;
+  border-top: 1px solid var(--header-border);
+  background: var(--bg-secondary);
+  flex-shrink: 0;
+  transition: background 0.35s ease, border-color 0.35s ease;
+}
+
+/* ---------- MOOD CHIPS ---------- */
+.mood-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.mood-chip {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1.5px solid var(--chip-border);
+  background: var(--chip-bg);
+  color: var(--accent-color);
+  font-family: "Poppins", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease,
+    border-color 0.35s ease;
+  white-space: nowrap;
+}
+
+.mood-chip:hover {
+  background: var(--chip-hover-bg);
+  transform: scale(1.05);
+  box-shadow: 0 0 14px var(--input-shadow);
+}
+.mood-chip:active {
+  transform: scale(0.97);
+}
+.chip-emoji {
+  font-size: 15px;
+}
+
+/* ---------- INPUT ROW ---------- */
+.input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.input-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-primary);
+  border: 1.5px solid var(--border-color);
+  border-radius: 28px;
+  padding: 10px 18px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease,
+    background 0.35s ease;
+}
+.input-wrapper:focus-within {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px var(--input-shadow);
+}
+.input-icon {
+  font-size: 17px;
+  flex-shrink: 0;
+}
+
+.chat-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  outline: none;
+  transition: color 0.35s ease;
+}
+.chat-input::placeholder {
+  color: var(--text-secondary);
+}
+
+.send-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background: var(--accent-color);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  box-shadow: 0 4px 16px var(--input-shadow);
+  transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+}
+.send-btn:hover {
+  background: var(--accent-hover);
+  transform: scale(1.08);
+  box-shadow: 0 6px 22px var(--input-shadow);
+}
+.send-btn:active {
+  transform: scale(0.95);
+}
+
+/* .song-list{
+margin-top:10px;
+display:flex;
+flex-direction:column;
+gap:8px;
+}
+
+.song-item{
+display:flex;
+align-items:center;
+gap:12px;
+padding:10px;
+border-radius:10px;
+background:rgba(255,255,255,0.05);
+cursor:pointer;
+transition:0.2s;
+}
+
+.song-item:hover{
+background:rgba(255,255,255,0.12);
+transform:scale(1.02);
+}
+
+.song-icon{
+font-size:18px;
+}
+
+.song-info{
+flex:1;
+}
+
+.song-title{
+font-weight:600;
+}
+
+.song-artist{
+font-size:12px;
+opacity:0.7;
+}
+
+.play-icon{
+font-size:16px;
+opacity:0.7;
+}
+
+.album-cover{
+width:50px;
+height:50px;
+border-radius:6px;
+margin-right:10px;
+} */
+
+.song-card {
+    display: flex;
+    gap: 15px;
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.05);
+}
+
+.song-info h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.song-info p {
+    margin: 2px 0 8px;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.spotify-link {
+    display: inline-block;
+    margin-top: 5px;
+    color: #1DB954;
+    font-size: 14px;
+}
+
+.song-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    margin-top: 10px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
+}
+
+.song-text strong {
+    display: block;
+    font-size: 14px;
+}
+
+.song-text span {
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 768px) {
+  body {
+    overflow: auto;
+  }
+  .app-wrapper {
+    align-items: flex-start;
+    padding: 0;
+  }
+  .app-container {
+    max-width: 100%;
+    height: 100svh;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .header {
+    padding: 14px 16px;
+  }
+  .app-title {
+    font-size: 1.05rem;
+  }
+  .app-subtitle,
+  .now-playing-pill {
+    display: none;
+  }
+  .logo-icon {
+    width: 38px;
+    height: 38px;
+  }
+  .chat-area {
+    padding: 16px 14px 10px;
+    gap: 10px;
+  }
+  .bubble {
+    max-width: 85%;
+    font-size: 0.83rem;
+  }
+  .footer {
+    padding: 10px 14px 16px;
+  }
+  .mood-chips {
+    gap: 6px;
+  }
+  .mood-chip {
+    font-size: 0.72rem;
+    padding: 5px 11px;
+  }
+  .chat-input {
+    font-size: 0.82rem;
+  }
+  .send-btn {
+    width: 44px;
+    height: 44px;
+  }
+  .orb {
+    display: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .mood-chip {
+    padding: 7px 10px;
+  }
+  .chip-emoji {
+    font-size: 18px;
+  }
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mood Music AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+  <div class="app-wrapper">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <div class="app-container">
+
+      <!-- HEADER -->
+      <header class="header">
+        <div class="header-left">
+          <div class="logo-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="9" cy="18" r="3"/><circle cx="15" cy="15" r="3"/>
+              <path d="M9 18V5l6-2v13"/>
+            </svg>
+          </div>
+          <div class="header-text">
+            <h1 class="app-title">Mood Music <span class="title-accent">AI</span></h1>
+            <p class="app-subtitle">Discover music based on your emotions</p>
+          </div>
+        </div>
+        <div class="header-right">
+          <div class="now-playing-pill" id="nowPlayingPill">
+            <span class="np-dot"></span>
+            <span class="np-text">Tuning in…</span>
+          </div>
+          <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">
+            <div class="ripple"></div>
+            <div class="theme-btn-inner">
+              <span class="btn-sun">☀️</span>
+              <span class="btn-moon">🌙</span>
+              <div class="btn-stars">
+                <div class="btn-star"></div>
+                <div class="btn-star"></div>
+                <div class="btn-star"></div>
+                <div class="btn-star"></div>
+                <div class="btn-star"></div>
+              </div>
+            </div>
+          </button>
+        </div>
+      </header>
+
+      <!-- CHAT AREA -->
+      <main class="chat-area" id="chatArea"></main>
+
+      <!-- FOOTER -->
+      <footer class="footer">
+        <div class="mood-chips">
+          <button class="mood-chip" data-mood="I'm feeling happy and joyful! 😊"><span class="chip-emoji">😊</span> Happy</button>
+          <button class="mood-chip" data-mood="I'm feeling really sad right now 😢"><span class="chip-emoji">😢</span> Sad</button>
+          <button class="mood-chip" data-mood="I'm in a romantic mood 💖"><span class="chip-emoji">💖</span> Romantic</button>
+          <button class="mood-chip" data-mood="I'm feeling super energetic! 🔥"><span class="chip-emoji">🔥</span> Energetic</button>
+          <button class="mood-chip" data-mood="I need music to help me focus 📚"><span class="chip-emoji">📚</span> Focus</button>
+        </div>
+        <div class="input-row">
+          <div class="input-wrapper">
+            <span class="input-icon">🎵</span>
+            <input type="text" id="userInput" class="chat-input" placeholder="How are you feeling today?" autocomplete="off" />
+          </div>
+          <button class="send-btn" id="sendBtn" aria-label="Send message">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"/>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
+          </button>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
